@@ -1,0 +1,56 @@
+﻿<Window x:Class="weather.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:weather"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="350">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:EnumToStringConverter x:Key="enumToString"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="{Binding WeatherImage}"/>
+        <Label
+            Grid.Row="1"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Content="{Binding Weather.Temperature}"
+            ContentStringFormat="Температура: {0} °C"/>
+        <Label
+            Grid.Row="2"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Content="{Binding Weather.Humidity}"
+            ContentStringFormat="Влажность: {0} %"/>
+        <Label
+            Grid.Row="3"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Content="{Binding Weather.Pressure}"
+            ContentStringFormat="Давление: {0} мм рт.с."/>
+        <Label
+            Grid.Row="4"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Content="{Binding Weather.WindSpeed}"
+            ContentStringFormat="Скорость ветра: {0} м/с"/>
+        <Label
+            Grid.Row="5"
+            FontSize="18"
+            FontWeight="DemiBold"
+            Content="{Binding Weather.WindDirrection,Converter={StaticResource enumToString}}"
+            ContentStringFormat="Направление ветра: {0}"/>
+    </Grid>
+</Window>
